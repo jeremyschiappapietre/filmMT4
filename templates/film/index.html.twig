@@ -17,7 +17,6 @@
                 <th>Rental_rate</th>
                 <th>Rental_duration</th>
                 <th>Rating</th>
-                <th>actions</th>
             </tr>
         </thead>
         <tbody>
@@ -28,10 +27,7 @@
                 <td>{{ film.rentalRate }}</td>
                 <td>{{ film.rentalDuration }}</td>
                 <td>{{ film.rating }}</td>
-                <td>
-                    <a href="{{ path('film_show', {'id': film.filmId}) }}">show</a>
-                    <a href="{{ path('film_edit', {'id': film.filmId}) }}">edit</a>
-                </td>
+              
             </tr>
         {% else %}
             <tr>
@@ -42,5 +38,4 @@
     </table>
     {{knp_pagination_render(films)}}
 
-    <a href="{{ path('film_new') }}">Create new</a>
 {% endblock %}
