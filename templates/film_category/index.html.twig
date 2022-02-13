@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FilmCategory index{% endblock %}
+
+{% block body %}
+    <h1>FilmCategory index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Film_id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for film_category in film_categories %}
+            <tr>
+                <td>{{ film_category.filmId }}</td>
+                <td>
+                    <a href="{{ path('film_category_show', {'film_id': film_category.film_id}) }}">show</a>
+                    <a href="{{ path('film_category_edit', {'film_id': film_category.film_id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('film_category_new') }}">Create new</a>
+{% endblock %}

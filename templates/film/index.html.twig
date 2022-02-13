@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Film index{% endblock %}
+
+{% block body %}
+    <h1>Film index</h1>
+    <p>Filtrer :</p>
+    <p>Nom du film : <a href="{{ path('film_title_asc') }}">Ordre Croissant</a>   <a href="{{ path('film_title_desc')}}">Ordre Décroissant</a></p><br>
+    <p>Genre du film : <a>Ordre Croissant</a>   <a>Ordre Décroissant</a></p><br>
+    <p>Nombre de location : <a href="{{ path('film_rental_asc') }}">Ordre Croissant</a>   <a href="{{ path('film_rental_desc') }}">Ordre Décroissant</a></p><br>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Rental_rate</th>
+                <th>Rental_duration</th>
+                <th>Rating</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for film in films %}
+            <tr>
+                <td>{{ film.filmId }}</td>
+                <td>{{ film.title }}</td>
+                <td>{{ film.rentalRate }}</td>
+                <td>{{ film.rentalDuration }}</td>
+                <td>{{ film.rating }}</td>
+                <td>
+                    <a href="{{ path('film_show', {'id': film.filmId}) }}">show</a>
+                    <a href="{{ path('film_edit', {'id': film.filmId}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {{knp_pagination_render(films)}}
+
+    <a href="{{ path('film_new') }}">Create new</a>
+{% endblock %}
